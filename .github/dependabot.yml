@@ -5,11 +5,73 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+      day: "sunday"
+    open-pull-requests-limit: 3
+    assignees:
+      - "kemplail"
+    reviewers:
+      - "kemplail"
+    pull-request-branch-name:
+      separator: "-"
+    target-branch: "master"
+
   - package-ecosystem: npm
     directory: "/javascript"
     schedule:
-      interval: "weekly"
+      interval: "daily"
+    open-pull-requests-limit: 3
+    assignees:
+      - "kemplail"
+    reviewers:
+      - "kemplail"
+    groups:
+      # Uniquement les mises à jour majeures des dépendances de production
+      npm-prod-major:
+        dependency-type: "production"
+        update-types:
+          - "major"
+        labels:
+          - "production"
+          - "major"
+      # Uniquement les mises à jour mineures et correctives des dépendances de production
+      npm-prod-minors-and-patches:
+        dependency-type: "production"
+        update-types:
+          - "minor"
+          - "patch"
+        labels:
+          - "production"
+          - "patch-minor"
+      # Uniquement les mises à jour des dépendances de développement
+      npm-development:
+        dependency-type: "development"
+        labels:
+          - "development"
+    commit-message:
+      prefix: "dependabot-javascript"
+    pull-request-branch-name:
+      separator: "-"
+    target-branch: "master"
+
   - package-ecosystem: bundler
     directory: "/ruby"
     schedule:
-      interval: "weekly"
+      interval: "daily"
+    open-pull-requests-limit: 1
+    assignees:
+      - "kemplail"
+    reviewers:
+      - "kemplail"
+    # Regroupe toutes les mises à jour dans une seule PR
+    groups:
+      all-ruby:
+        patterns:
+          - "*"
+    commit-message:
+      prefix: "dependabot-ruby"
+    ignore:
+      - dependency-name: "business"
+        versions: ["1.1", "1.2"]
+    pull-request-branch-name:
+      separator: "-"
+    target-branch: "master"
