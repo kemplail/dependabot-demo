@@ -34,13 +34,13 @@ updates:
         update-types:
           - "major"
       # Uniquement les mises à jour mineures et correctives des dépendances de production
-      npm-prod-minors-and-patches:
+      npm-prod-minors:
         dependency-type: "production"
         update-types:
           - "minor"
           - "patch"
       # Uniquement les mises à jour des dépendances de développement
-      npm-development:
+      npm-dev:
         dependency-type: "development"
     commit-message:
       prefix: "dependabot-javascript"
