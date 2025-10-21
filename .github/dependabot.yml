@@ -14,6 +14,8 @@ updates:
     pull-request-branch-name:
       separator: "-"
     target-branch: "master"
+    labels:
+      - "GA"
 
   - package-ecosystem: npm
     directory: "/javascript"
@@ -30,28 +32,22 @@ updates:
         dependency-type: "production"
         update-types:
           - "major"
-        labels:
-          - "production"
-          - "major"
       # Uniquement les mises à jour mineures et correctives des dépendances de production
       npm-prod-minors-and-patches:
         dependency-type: "production"
         update-types:
           - "minor"
           - "patch"
-        labels:
-          - "production"
-          - "patch-minor"
       # Uniquement les mises à jour des dépendances de développement
       npm-development:
         dependency-type: "development"
-        labels:
-          - "development"
     commit-message:
       prefix: "dependabot-javascript"
     pull-request-branch-name:
       separator: "-"
     target-branch: "master"
+    labels:
+      - "JS"
 
   - package-ecosystem: bundler
     directory: "/ruby"
@@ -75,3 +71,5 @@ updates:
     pull-request-branch-name:
       separator: "-"
     target-branch: "master"
+    labels:
+      - "RB"
