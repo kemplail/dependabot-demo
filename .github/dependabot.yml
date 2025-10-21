@@ -15,7 +15,8 @@ updates:
       separator: "-"
     target-branch: "main"
     labels:
-      - "GA"
+      - "dependencies"
+      - "github-actions"
 
   - package-ecosystem: npm
     directory: "/javascript"
@@ -47,7 +48,8 @@ updates:
       separator: "-"
     target-branch: "main"
     labels:
-      - "JS"
+      - "dependencies"
+      - "javascript"
 
   - package-ecosystem: bundler
     directory: "/ruby"
@@ -72,4 +74,5 @@ updates:
       separator: "-"
     target-branch: "main"
     labels:
-      - "RB"
+      - "dependencies"
+      - "ruby"
