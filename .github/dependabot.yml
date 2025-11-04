@@ -1,15 +1,58 @@
 ---
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "weekly"
   - package-ecosystem: npm
     directory: "/javascript"
     schedule:
-      interval: "weekly"
-  - package-ecosystem: bundler
-    directory: "/ruby"
+      interval: "daily"
+    open-pull-requests-limit: 3
+    assignees:
+      - "kemplail"
+    groups:
+      # Uniquement les mises à jour majeures des dépendances de production
+      npm-prod-major:
+        dependency-type: "production"
+        update-types:
+          - "major"
+      # Uniquement les mises à jour mineures et correctives des dépendances de production
+      npm-prod-minors:
+        dependency-type: "production"
+        update-types:
+          - "minor"
+          - "patch"
+      # Uniquement les mises à jour des dépendances de développement
+      npm-dev:
+        dependency-type: "development"
+    pull-request-branch-name:
+      separator: "-"
+    target-branch: "dev"
+    labels:
+      - "dependencies"
+      - "javascript"
+
+  - package-ecosystem: npm
+    directory: "/javascript"
     schedule:
-      interval: "weekly"
+      interval: "daily"
+    open-pull-requests-limit: 0
+
+  - package-ecosystem: bundler
+    schedule:
+      interval: "daily"
+    directory: "/"
+    exclude-paths:
+      - "**/*"
+
+  - package-ecosystem: github-actions
+    schedule:
+      interval: "daily"
+    directory: "/"
+    exclude-paths:
+      - "**/*"
+
+  - package-ecosystem: npm
+    schedule:
+      interval: "daily"
+    directory: "/"
+    exclude-paths:
+      - "**/*"
